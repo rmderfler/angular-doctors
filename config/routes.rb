@@ -15,5 +15,13 @@ Rails.application.routes.draw do
   match('patients/:id', {:via => [:patch, :put], :to => 'patients#update'})
   match('patients/:id', {:via => :delete, :to => 'patients#destroy'})
  
+  
+  match('appointments', {:via => :get, :to => 'appointments#index'})
+  match('appointments', {:via => :post, :to => 'appointments#create'})
+  match('appointments/new', {:via => :get, :to => 'appointments#new'})
+  match('appointments/:id', {:via => :get, :to => 'appointments#show'})
+  
+
+
 
 end

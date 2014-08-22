@@ -1,0 +1,13 @@
+<h1><%= @appointment.doctor_id %></h1>
+
+
+
+<p><a href="/appointments/<%= @appointment.id %>/edit">Edit appointment</a></p>
+
+
+<p><a href="/appointments/<%= @appointment.id %>"
+      data-confirm="You sure?"
+      data-method="delete"
+      rel="nofollow">Delete</a></p>
+
+<p><a href="/appointments">Return to appointment listing</a></p>

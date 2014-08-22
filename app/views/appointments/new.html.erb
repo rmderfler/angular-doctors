@@ -1,0 +1,16 @@
+<h1>New Appointment</h1>
+
+<%= render('layouts/errors', :object => @appointment) %>
+
+<form action="/appointments" method="post">
+
+<form action="/appointments/<%= @appointment.id %>" method="post">
+  
+  <label for="appointment_appointment_time">time</label>
+  <input id="appointment_appointment_time" name="appointment[appointment_time]" type="text" value="<%= @appointment.appointment_time %>">
+  <label for="appointment_doctor_id">doctor id</label>
+  <input id="appointment_doctor_id" name="appointment[doctor_id]" type="text" value="<%= @appointment.doctor_id %>">
+  <label for="appointment_patient_id">patient id</label>
+  <input id="appointment_patient_id" name="appointment[patient_id]" type="text" value="<%= @appointment.patient_id %>">
+<button>Create Appointment</button>
+</form>
