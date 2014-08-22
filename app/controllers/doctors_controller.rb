@@ -17,6 +17,7 @@ class DoctorsController < ApplicationController
   def create
     @doctor = Doctor.new(params[:doctor])
     if @doctor.save
+      flash[:new] = "Doctor added!"
       redirect_to("/doctors/#{@doctor.id}")
     else
       render('doctors/new.html.erb')
@@ -31,6 +32,7 @@ class DoctorsController < ApplicationController
   def update
     @doctor = Doctor.find(params[:id])
     if @doctor.update(params[:doctor])
+      flash[:update] = "Doctor updated!"
       redirect_to("/doctors/#{@doctor.id}")
     else
       render('doctors/edit.html.erb')
