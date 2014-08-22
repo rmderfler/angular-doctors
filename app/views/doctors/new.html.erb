@@ -3,7 +3,8 @@
 <%= render('layouts/errors', :object => @doctor) %>
 
 <form action="/doctors" method="post">
-<label for="doctor_name">Name</label>
-<input id="doctor_name" name="doctor[name]" type="text" value="<%= @doctor.name %>">
+
+<%= render('form') %>
+
 <button>Create Doctor</button>
 </form>
