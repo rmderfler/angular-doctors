@@ -8,4 +8,9 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.find(params[:id])
     render('doctors/show.html.erb')
   end
+
+   def new
+    @doctor = Doctor.new
+    render('doctors/new.html.erb')
+  end
 end

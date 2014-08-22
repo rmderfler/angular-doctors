@@ -1,0 +1,7 @@
+<h1>New doctor</h1>
+
+<form action="/doctors" method="post">
+<label for="doctor_name">Name</label>
+<input id="doctor_name" name="doctor[name]" type="text" value="<%= @doctor.name %>">
+<button>Create Doctor</button>
+</form>
