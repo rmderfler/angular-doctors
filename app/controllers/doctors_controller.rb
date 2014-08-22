@@ -9,8 +9,17 @@ class DoctorsController < ApplicationController
     render('doctors/show.html.erb')
   end
 
-   def new
+  def new
     @doctor = Doctor.new
     render('doctors/new.html.erb')
+  end
+
+  def create
+    @doctor = Doctor.new(params[:doctor])
+    if @doctor.save
+      redirect_to("/doctors/#{@doctor.id}")
+    else
+      render('doctors/new.html.erb')
+    end
   end
 end
