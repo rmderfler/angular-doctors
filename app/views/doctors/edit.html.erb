@@ -1,0 +1,18 @@
+<h1>Edit doctor</h1>
+
+<% if @doctor.errors.any? %>
+  <h3>Please fix these errors:</h3>
+  <ul>
+    <% @doctor.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/doctors/<%= @doctor.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="doctor_name">Name</label>
+  <input id="doctor_name" name="doctor[name]" type="text" value="<%= @doctor.name %>">
+
+  <button>Update Doctor</button>
+</form>

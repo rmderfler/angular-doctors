@@ -22,4 +22,18 @@ class DoctorsController < ApplicationController
       render('doctors/new.html.erb')
     end
   end
+
+  def edit
+    @doctor = Doctor.find(params[:id])
+    render('doctors/edit.html.erb')
+  end
+
+  def update
+    @doctor = Doctor.find(params[:id])
+    if @doctor.update(params[:doctor])
+      redirect_to("/doctors/#{@doctor.id}")
+    else
+      render('doctors/edit.html.erb')
+    end
+  end
 end
