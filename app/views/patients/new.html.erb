@@ -1,0 +1,10 @@
+<h1>New Patient</h1>
+
+<%= render('layouts/errors', :object => @patient) %>
+
+<form action="/patients" method="post">
+
+<%= render('form') %>
+
+<button>Create Patient</button>
+</form>

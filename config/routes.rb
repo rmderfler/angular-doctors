@@ -6,4 +6,14 @@ Rails.application.routes.draw do
   match('doctors/:id/edit', {:via => :get, :to => 'doctors#edit'})
   match('doctors/:id', {:via => [:patch, :put], :to => 'doctors#update'})
   match('doctors/:id', {:via => :delete, :to => 'doctors#destroy'})
+
+  match('patients', {:via => :get, :to => 'patients#index'})
+  match('patients', {:via => :post, :to => 'patients#create'})
+  match('patients/new', {:via => :get, :to => 'patients#new'})
+  match('patients/:id', {:via => :get, :to => 'patients#show'})
+  match('patients/:id/edit', {:via => :get, :to => 'patients#edit'})
+  match('patients/:id', {:via => [:patch, :put], :to => 'patients#update'})
+  match('patients/:id', {:via => :delete, :to => 'patients#destroy'})
+ 
+
 end

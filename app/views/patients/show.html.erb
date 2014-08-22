@@ -1,0 +1,11 @@
+<h1><%= @patient.name %></h1>
+
+<p><a href="/patients/<%= @patient.id %>/edit">Edit patient's name</a></p>
+
+
+<p><a href="/patients/<%= @patient.id %>"
+      data-confirm="You sure?"
+      data-method="delete"
+      rel="nofollow">Delete</a></p>
+
+<p><a href="/patients">Return to patient listing</a></p>
