@@ -36,4 +36,10 @@ class DoctorsController < ApplicationController
       render('doctors/edit.html.erb')
     end
   end
+
+  def destroy
+    @doctor = Doctor.find(params[:id])
+    @doctor.destroy
+    redirect_to('/doctors/')
+  end
 end
