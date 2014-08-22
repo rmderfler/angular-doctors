@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   match('appointments', {:via => :post, :to => 'appointments#create'})
   match('appointments/new', {:via => :get, :to => 'appointments#new'})
   match('appointments/:id', {:via => :get, :to => 'appointments#show'})
-  
+  match('appointments/:id/edit', {:via => :get, :to => 'appointments#edit'})
+  match('appointments/:id', {:via => [:patch, :put], :to => 'appointments#update'})
+  match('appointments/:id', {:via => :delete, :to => 'appointments#destroy'})
+ 
 
 
 
