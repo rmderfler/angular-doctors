@@ -1,6 +1,6 @@
 class DoctorsController < ApplicationController
   def index
-    @doctors = doctor.all
+    @doctors = Doctor.all
     render('doctors/index.html.erb')
   end
 
