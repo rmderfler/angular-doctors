@@ -2,6 +2,8 @@ Doctors' Office
 ===============
 
 ###About
+Ruby on Rails app.
+
 *CRUD:* doctors, patients, appointments.
 
 Doctor/patient has many patients through appointments.  Doctor/patient has many appointments.
