@@ -3,6 +3,12 @@
 body {
   font-size: 100% Helvetica, sans-serif;
   background-color: #efefef;
+  background: url('/assets/snakes.jpeg') no-repeat center center fixed;
+  -webkit-background-size: 400px;
+  -moz-background-size: 400px;
+  -o-background-size: 400px;
+  background-size: 400px;
+
 }
 
   a {
