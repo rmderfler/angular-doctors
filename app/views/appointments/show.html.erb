@@ -1,5 +1,6 @@
-<h1><%= @appointment.doctor_id %></h1>
-
+<h2>Appointment date/time: <%=@appointment.appointment_time %><h3> 
+<h3>doctor id: <%= @appointment.doctor_id %></h3>
+<h3>patient id: <%= @appointment.patient_id %></h3>
 
 
 <p><a href="/appointments/<%= @appointment.id %>/edit">Edit appointment</a></p>

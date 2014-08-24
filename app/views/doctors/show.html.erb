@@ -1,4 +1,23 @@
-<h1><%= @doctor.name %></h1>
+<h1>Dr. <%= @doctor.name %></h1>
+<p>ID: <%=@doctor.id%></p>
+<p>Dr. <%=@doctor.name%>'s patients:</p>
+<ul>
+<% patient_array = [] %>
+<% @doctor.patients.each {|patient| patient_array << patient.name }%>
+<% patient_array.each do |patient| %>
+	 <li><%= patient %></li>
+	   <%end%>
+</ul>
+
+<p>Dr. <%=@doctor.name%>'s appointments:</p>
+<ul>
+<%appointment_array = [] %>
+<% @doctor.appointments.each {|appointment| appointment_array << appointment.appointment_time }%>
+<% appointment_array.each do |appointment| %>
+	 <li><%= appointment %></li>
+	   <%end%>
+</ul>
+
 
 <p><a href="/doctors/<%= @doctor.id %>/edit">Edit doctor's name</a></p>
 
@@ -9,3 +28,5 @@
       rel="nofollow">Delete</a></p>
 
 <p><a href="/doctors">Return to doctor listing</a></p>
+
+<p><a href="/appointments/">Go to appointments page</a></p>

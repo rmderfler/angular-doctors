@@ -44,4 +44,7 @@ class DoctorsController < ApplicationController
     @doctor.destroy
     redirect_to('/doctors/')
   end
+
+  
+
 end

@@ -2,8 +2,12 @@
 
 <ul>
   <% @doctors.each do |doctor| %>
-    <li><a href="/doctors/<%= doctor.id %>"><%= doctor.name %></a></li>
+    <li><a href="/doctors/<%= doctor.id %>"><%= doctor.name%></a></li>
   <% end %>
 </ul>
 
 <p><a href="/doctors/new">Create a new doctor</a></p>
+
+<p><a href="/appointments/">Go to appointments page</a></p>
+
+<p><a href="/patients/">Go to patients page</a></p>
