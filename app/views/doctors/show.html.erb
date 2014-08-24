@@ -5,17 +5,17 @@
 <% patient_array = [] %>
 <% @doctor.patients.each {|patient| patient_array << patient.name }%>
 <% patient_array.each do |patient| %>
-	 <li><%= patient %></li>
-	   <%end%>
+	<li><%= patient %></li>
+	  <%end%>
 </ul>
 
 <p>Dr. <%=@doctor.name%>'s appointments:</p>
 <ul>
-<%appointment_array = [] %>
+<% appointment_array = [] %>
 <% @doctor.appointments.each {|appointment| appointment_array << appointment.appointment_time }%>
-<% appointment_array.each do |appointment| %>
-	 <li><%= appointment %></li>
-	   <%end%>
+<% appointment_array.each do |time| %>
+	<li><%= time %></li>
+	  <%end%>
 </ul>
 
 
