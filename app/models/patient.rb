@@ -3,6 +3,4 @@ class Patient < ActiveRecord::Base
   validates :name, :uniqueness => true
   has_many :appointments
   has_many :doctors, :through => :appointments
-  belongs_to :doctor
-
 end

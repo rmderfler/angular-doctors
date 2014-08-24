@@ -1,5 +1,24 @@
 <h1><%= @patient.name %></h1>
 
+<p>ID: <%=@patient.id%></p>
+<p>Patient <%=@patient.name%>'s doctors:</p>
+<ul>
+<% doctor_array = [] %>
+<% @patient.doctors.each {|doctor| doctor_array << doctor.name }%>
+<% doctor_array.each do |doctor| %>
+	 <li><%= doctor %></li>
+	   <%end%>
+</ul>
+
+<p>Patient <%=@patient.name%>'s appointments:</p>
+<ul>
+<%appointment_array = [] %>
+<% @patient.appointments.each {|appointment| appointment_array << appointment.appointment_time }%>
+<% appointment_array.each do |appointment| %>
+	 <li><%= appointment %></li>
+	   <%end%>
+</ul>
+
 <p><a href="/patients/<%= @patient.id %>/edit">Edit patient's name</a></p>
 
 
