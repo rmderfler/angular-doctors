@@ -11,4 +11,4 @@ Doctor/patient has many patients through appointments.  Doctor/patient has many 
 * postgresql
 * bootstrap
 
-###Working online (without css) [here](http://doctors-office.herokuapp.com/)
+###Working online (without css and without delete function) [here](http://doctors-office.herokuapp.com/)
