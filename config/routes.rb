@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  match('/', {:via => :get, :to => 'doctors#index'})
+  root :to => "application#index"
+  # match('/', {:via => :get, :to => 'doctors#index'})
   match('doctors', {:via => :get, :to => 'doctors#index'})
   match('doctors', {:via => :post, :to => 'doctors#create'})
   match('doctors/new', {:via => :get, :to => 'doctors#new'})
@@ -15,8 +16,8 @@ Rails.application.routes.draw do
   match('patients/:id/edit', {:via => :get, :to => 'patients#edit'})
   match('patients/:id', {:via => [:patch, :put], :to => 'patients#update'})
   match('patients/:id', {:via => :delete, :to => 'patients#destroy'})
- 
-  
+
+
   match('appointments', {:via => :get, :to => 'appointments#index'})
   match('appointments', {:via => :post, :to => 'appointments#create'})
   match('appointments/new', {:via => :get, :to => 'appointments#new'})
@@ -24,5 +25,5 @@ Rails.application.routes.draw do
   match('appointments/:id/edit', {:via => :get, :to => 'appointments#edit'})
   match('appointments/:id', {:via => [:patch, :put], :to => 'appointments#update'})
   match('appointments/:id', {:via => :delete, :to => 'appointments#destroy'})
- 
+
 end

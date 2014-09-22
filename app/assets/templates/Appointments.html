@@ -1,0 +1,46 @@
+<div class="container" ng-controller="AppointmentsCtrl">
+  <div class="row" ng-show="appointments.length">
+    <div class="col-md-4">
+      <div class="col-md-4">
+        <h4>Search Appointments</h4>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <input ng-model="query" type="text" class="form-control" id="appointment-name" placeholder="Search">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<div class="row">
+    <div class="col-md-4">
+      <h2 ng-show="appointments.length && filtered.length">Appointment List</h2>
+      <h2 ng-show="appointments.length && !filtered.length">No Matches</h2>
+      <ul>
+        <li ng-repeat="item in filtered = (appointments | filter:query)">
+          <span ng-click="editing = true" ng-hide="editing">
+            <span>{{item.patient_id}} {{item.doctor_id}} {{item.appointment_time}}</span> <a ng-click="AppointmentsFactory.deleteAppointment(item)">| Delete</a>
+          </span>
+          <span class="form-group" ng-show="editing" ng-submit="editing = false">
+            <form class="form-inline" role="form">
+              <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
+              <button ng-click="AppointmentsFactory.updateAppointment(item)" class="btn btn-default btn-sm" type="submit">Save</button>
+            </form>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-md-4">
+      <h2>New Appointment</h2>
+      <form ng-submit="addAppointment()" class="form-inline" role="form">
+        <div class="form-group">
+          <input type="text" ng-model="AppointmentsFactory.patientName" class="form-control" id="patient-name" placeholder="Enter Patient ID">
+          <input type="text" ng-model="AppointmentsFactory.doctorName" class="form-control" id="doctor-name" placeholder="Enter Doctor ID">
+          <input type="text" ng-model="AppointmentsFactory.appointmentTime" class="form-control" id="appointment-time" placeholder="Enter Time">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+    </div>
+</div>

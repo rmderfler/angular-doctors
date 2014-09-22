@@ -11,7 +11,7 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  
+
   config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
@@ -24,10 +24,10 @@ Rails.application.configure do
   # Generate digests for assets URLs.
   config.assets.digest = true
 
-  
+
   config.log_level = :info
 
-  
+
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners.
@@ -41,4 +41,5 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.assets.js_compressor = Uglifier.new(mangle: false)
 end

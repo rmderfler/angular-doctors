@@ -1,7 +1,11 @@
+require 'pry'
+
 class DoctorsController < ApplicationController
   def index
     @doctors = Doctor.all
-    render('doctors/index.html.erb')
+     respond_to do |format|
+        format.json { render :json => @doctors }
+      end
   end
 
   def show
@@ -9,42 +13,67 @@ class DoctorsController < ApplicationController
     render('doctors/show.html.erb')
   end
 
-  def new
-    @doctor = Doctor.new
-    render('doctors/new.html.erb')
-  end
-
   def create
-    @doctor = Doctor.new(params[:doctor])
+    @doctor = Doctor.new
+
+    @doctor.name = params[:doctorName]
+
     if @doctor.save
-      flash[:new] = "Doctor added!"
-      redirect_to("/doctors/#{@doctor.id}")
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Doctor created."
+          redirect_to root_path
+        end
+        format.json { render :json => @doctor, :status => 201 }
+      end
     else
-      render('doctors/new.html.erb')
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render :json => @doctor.errors, :status => 422 }
+      end
     end
   end
 
-  def edit
-    @doctor = Doctor.find(params[:id])
-    render('doctors/edit.html.erb')
-  end
+  # def edit
+  #   @doctor = Doctor.find(params[:id])
+  #   render('doctors/edit.html.erb')
+  # end
 
   def update
     @doctor = Doctor.find(params[:id])
     if @doctor.update(params[:doctor])
-      flash[:update] = "Doctor updated!"
-      redirect_to("/doctors/#{@doctor.id}")
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Doctor updated."
+          redirect_to root_path
+        end
+        format.json { render :json => @doctor, :status => 201 }
+      end
     else
-      render('doctors/edit.html.erb')
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render :json => @doctor.errors, :status => 422 }
+      end
     end
   end
+
 
   def destroy
     @doctor = Doctor.find(params[:id])
     @doctor.destroy
-    redirect_to('/doctors/')
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Doctor deleted."
+        redirect_to root_path
+      end
+      format.json { head :no_content }
+    end
   end
 
-  
+private
+
+  def doctor_params
+    params.require(:doctor).permit(:doctorName)
+  end
 
 end

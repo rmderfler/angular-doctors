@@ -1,48 +1,71 @@
 class AppointmentsController < ApplicationController
   def index
     @appointments = Appointment.all
-    render('appointments/index.html.erb')
-  end
 
-  def show
-    @appointment = Appointment.find(params[:id])
-    render('appointments/show.html.erb')
-  end
-
-  def new
-    @appointment = Appointment.new
-    render('appointments/new.html.erb')
-  end
-
-  def create
-    @appointment = Appointment.new(params[:appointment])
-    if @appointment.save
-      flash[:new] = "appointment added!"
-      redirect_to("/appointments/#{@appointment.id}")
-    else
-      render('appointments/new.html.erb')
+    respond_to do |format|
+      format.html
+      format.json { render :json => @appointments }
     end
   end
 
-  def edit
-    @appointment = Appointment.find(params[:id])
-    render('appointments/edit.html.erb')
+  # def show
+  #   @appointment = Appointment.find(params[:id])
+
+  #   respond_to do |format|
+  #     format.html
+  #     format.json { render :json => @appointments }
+  #   end
+  # end
+
+  def create
+    @appointment = Appointment.new
+    @appointment.appointment_time = params[:appointmentTime]
+    @appointment.patient_id = params[:patientName]
+    @appointment.doctor_id = params[:doctorName]
+    if @appointment.save
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "appointment created."
+          redirect_to root_path
+        end
+        format.json { render :json => @appointment, :status => 201 }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render :json => @appointment.errors, :status => 422 }
+      end
+    end
   end
 
   def update
     @appointment = Appointment.find(params[:id])
     if @appointment.update(params[:appointment])
-      flash[:update] = "appointment updated!"
-      redirect_to("/appointments/#{@appointment.id}")
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Student updated."
+          redirect_to root_path
+        end
+        format.json { render :json => @student, :status => 201 }
+      end
     else
-      render('appointments/edit.html.erb')
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render :json => @student.errors, :status => 422 }
+      end
     end
   end
 
   def destroy
     @appointment = Appointment.find(params[:id])
     @appointment.destroy
-    redirect_to('/appointments/')
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Appointment deleted."
+        redirect_to root_path
+      end
+      format.json { head :no_content }
+    end
   end
 
 

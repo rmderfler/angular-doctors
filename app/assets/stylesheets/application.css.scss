@@ -1,18 +1,45 @@
 @import "bootstrap";
-@import "bootstrap-sprockets";
+
 body {
   font-size: 100% Helvetica, sans-serif;
   background-color: #efefef;
-  background: url('/assets/snakes.jpeg') no-repeat center center fixed;
-  -webkit-background-size: 400px;
-  -moz-background-size: 400px;
-  -o-background-size: 400px;
-  background-size: 400px;
-
+  background: url('/assets/snakes.jpeg') no-repeat fixed;
+  -webkit-background-size: 50px;
+  -moz-background-size: 50px;
+  -o-background-size: 50px;
+  background-size: 50px;
+  padding: 10px;
 }
 
-  a {
-    display: block;
-    padding: 6px 12px;
-    text-decoration: none;
-  } 
+a:hover {
+  color: red;
+  font-weight: bold;
+}
+
+span.ng-binding:hover {
+  color: orange;
+  font-weight: bold;
+}
+
+.flex1 {
+  -webkit-flex: 1;
+          flex: 1;
+}
+.flex2 {
+  -webkit-flex: 2;
+          flex: 2;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color: #7399FF;
+}
+
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: blue;
+    background-color:transparent;
+}
+
+nav#main-nav {
+  padding: 0 10px;
+  background-color: black;
+}

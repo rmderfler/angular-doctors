@@ -1,13 +1,15 @@
 class PatientsController < ApplicationController
   def index
     @patients = Patient.all
-    render('patients/index.html.erb')
+    respond_to do |format|
+      format.json { render :json => @patients }
+    end
   end
 
-  def show
-    @patient = Patient.find(params[:id])
-    render('patients/show.html.erb')
-  end
+  # def show
+  #   @patient = Patient.find(params[:id])
+  #   render('patients/show.html.erb')
+  # end
 
   def new
     @patient = Patient.new
@@ -15,33 +17,62 @@ class PatientsController < ApplicationController
   end
 
   def create
-    @patient = Patient.new(params[:patient])
+    @patient = Patient.new
+    @patient.name = params[:patientName]
     if @patient.save
-      flash[:new] = "Patient added!"
-      redirect_to("/patients/#{@patient.id}")
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Patient created."
+          redirect_to root_path
+        end
+        format.json { render :json => @patient, :status => 201 }
+      end
     else
-      render('patients/new.html.erb')
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render :json => @patient.errors, :status => 422 }
+      end
     end
   end
 
-  def edit
-    @patient = Patient.find(params[:id])
-    render('patients/edit.html.erb')
-  end
+  # def edit
+  #   @patient = Patient.find(params[:id])
+  #   render('patients/edit.html.erb')
+  # end
 
   def update
     @patient = Patient.find(params[:id])
     if @patient.update(params[:patient])
-      flash[:update] = "Patient updated!"
-      redirect_to("/patients/#{@patient.id}")
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Patient updated."
+          redirect_to root_path
+        end
+        format.json { render :json => @patient, :status => 201 }
+      end
     else
-      render('patients/edit.html.erb')
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render :json => @patient.errors, :status => 422 }
+      end
     end
   end
 
   def destroy
     @patient = Patient.find(params[:id])
     @patient.destroy
-    redirect_to('/patients/')
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Patient deleted."
+        redirect_to root_path
+      end
+      format.json { head :no_content }
+    end
+  end
+
+private
+
+  def patient_params
+    params.require(:patient).permit(:patientName)
   end
 end
